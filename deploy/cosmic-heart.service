@@ -1,0 +1,23 @@
+[Unit]
+Description=Cosmic Pulse Heart web application
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=cosmic-heart
+Group=cosmic-heart
+WorkingDirectory=/opt/cosmic-heart
+Environment=NODE_ENV=production
+Environment=PATH=/usr/local/bin:/usr/bin:/bin
+ExecStart=/usr/local/bin/npm start -- --hostname 127.0.0.1 --port 3001
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectSystem=full
+ProtectHome=true
+ReadWritePaths=/opt/cosmic-heart
+
+[Install]
+WantedBy=multi-user.target
